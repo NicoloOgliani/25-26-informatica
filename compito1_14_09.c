@@ -1,5 +1,6 @@
 /*Data una matrice di valori scambiare gli elementi della diagonale principale con la diagonale secondaria.*/
 #include <stdio.h>
+#include <time.h>
 
 #define R 3
 #define C 3
@@ -7,8 +8,7 @@
 void LeggiMatrice(int mat[R][C]){
     for(int i = 0; i < R; i++){
         for(int j = 0; j < C; j++){
-            printf("Inserisci l'elemento in posizione [%d][%d]: ", i, j);
-            scanf("%d", &mat[i][j]);
+            mat[i][j]=rand()%30+1;
         }
     }
 }
