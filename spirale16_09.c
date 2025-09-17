@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #define DIM 5
 void carica(int m[DIM][DIM]){
-    int i, j, k=1;
+    int i, j, n=1;
     int inizio=0, fine=DIM-1;
     while(inizio<=fine){
         for(i=inizio; i<=fine; i++)
-            m[inizio][i]=k++;
+            m[inizio][i]=n++;
         for(i=inizio+1; i<=fine; i++)
-            m[i][fine]=k++;
+            m[i][fine]=n++;
         for(i=fine-1; i>=inizio; i--)
-            m[fine][i]=k++;
+            m[fine][i]=n++;
         for(i=fine-1; i>inizio; i--)
-            m[i][inizio]=k++;
+            m[i][inizio]=n++;
         inizio++;
         fine--;
     }
