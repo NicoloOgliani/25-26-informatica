@@ -19,9 +19,9 @@ void carica(int m[DIM][DIM]){
     }
 }
 void stampa(int m[DIM][DIM]){
-    int i, j;
-    for(i=0; i<DIM; i++){
-        for(j=0; j<DIM; j++)
+
+    for(int i=0; i<DIM; i++){
+        for(int j=0; j<DIM; j++)
             printf("%d ", m[i][j]);
         printf("\n");
     }
