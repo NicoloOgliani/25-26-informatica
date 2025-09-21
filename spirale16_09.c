@@ -1,4 +1,4 @@
-/*caricare una matrice di quadrata con numeri in scala da 1 a 25 a spirale*/
+/*caricare una matrice di quadrata con numeri a spirale*/
 #include <stdio.h>
 #include <stdlib.h>
 #define DIM 5
