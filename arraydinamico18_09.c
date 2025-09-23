@@ -63,7 +63,7 @@ int main(){
                         break;
                     }
                 }
-                if (trovato) {
+                if (trovato==1) {
                     printf("Numero %d trovato.", numero);
                 } else {
                     printf("Numero %d non trovato", numero);
@@ -119,7 +119,7 @@ int main(){
             default:
                 printf("Opzione non valida");
         }
-    } while (scelta <1||scelta>6);
+    } while (scelta <1 || scelta>6);
     free(array);
     return 0;
 

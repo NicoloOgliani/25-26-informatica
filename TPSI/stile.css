@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.sfondo {
+  background-image: url('margherita.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.volantino {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 400px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.titolo h1 {
+  font-size: 36px;
+  margin: 0;
+  color: #2e7d32;
+}
+
+.titolo h2 {
+  font-size: 20px;
+  margin-top: 5px;
+  color: #4caf50;
+}
+
+.sezione h3 {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.citazione h3,
+.progettazione h3 {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #2e7d32;
+}
+
+.citazione p {
+  font-style: italic;
+  color: #555;
+  margin-top: 5px;
+}
+
+.progettazione p {
+  margin-top: 10px;
+  color: #444;
+}
+
+.contatti {
+  margin-top: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: #2e7d32;
+}
