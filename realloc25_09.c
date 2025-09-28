@@ -11,30 +11,30 @@ int* creaVett(int _n){
     _array1=(int*)malloc(_n*sizeof(int));
     if(_array1==NULL){
         printf("Errore di allocazione");
-        return 1;
+        exit (1);
     } 
     return _array1;
 }
-int* inserisciValori(int *array1, int _n){
+int* inserisciValori(int *_array1, int _n){
     for(int i=0; i<_n; i++){
         printf("Inserisci un valore: ");
-        scanf("%d", &array1[i]);
+        scanf("%d", &_array1[i]);
     }
-    return array1;
+    return _array1;
 }
-void stampaVett(int *array1, int _n){
+void stampaVett(int *_array1, int _n){
     printf("Hai inserito i seguenti elementi: ");
     for(int i=0; i<_n; i++){
-        printf("%d ", array1[i]);
+        printf("%d ", _array1[i]);
     }
     printf("\n");
 }
-int sommaMultipli(int *array1, int _n){
+int sommaMultipli(int *_array1, int _n){
     int somma=0, cnt=0;
     for(int i=0; i<_n; i++){
-        if(array1[i]%3==0){
+        if(_array1[i]%3==0){
             cnt++;
-            somma=somma+array1[i];
+            somma=somma+_array1[i];
         }
 
     }
@@ -42,10 +42,10 @@ int sommaMultipli(int *array1, int _n){
 }
 int* creanuovoVett(int _n){
     int* _array2=NULL;
-    _array2=(int*)mallloc(_n*sizeof(int));
+    _array2=(int*)malloc(_n*sizeof(int));
     if(_array2==NULL){
         printf("Errore di allocazione");
-        return 1;
+        exit (1);
     } 
     return _array2;
 }
@@ -55,7 +55,11 @@ void controlloValori(int *_array2, int _n){
             _array2=(int*)realloc(_array2, (_n-1)*sizeof(int));
             if(_array2==NULL){
                 printf("Errore di allocazione");
-            return 1;
+            exit (1);
+            }
+        }
+        else{
+            printf("%d ", _array2[i]);
         }
     }
 }
@@ -66,7 +70,7 @@ int main(){
     
     array1=creaVett(n);
     array1=inserisciValori(array1, n);
-    stanpaVett(array1, n);
+    stampaVett(array1, n);
     sommaMultipli(array1, n);
     array2=creanuovoVett(n);
     controlloValori(array2, n);
