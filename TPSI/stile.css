@@ -1,67 +1,87 @@
+/* Reset di base */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+
+    /* immagine della margherita come sfondo */
+    background-image: url("margherita.jpg");
+    background-size: cover;      /* la adatta a coprire tutto */
+    background-position: center; /* la centra */
+    background-attachment: fixed;/* resta ferma anche se scrolli */
 }
 
-.sfondo {
-  background-image: url('margherita.jpg'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#titolo {
+    background-color: #2f6f3e; /* verde */
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px;
 }
 
-.volantino {
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 400px;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+#titolo2 {
+    background-color: #2f6f3e;
+    color: #cde6d0;
+    font-size: 18px;
+    padding: 5px 20px 15px 20px;
+    font-style: italic;
+}
+#navbar {
+    background: #fff;
+    width: 180px;
+    float: left;
+    border-right: 3px solid #ddd;
+    height: 100%;
+    padding: 20px 10px;
+    box-sizing: border-box;
 }
 
-.titolo h1 {
-  font-size: 36px;
-  margin: 0;
-  color: #2e7d32;
+#navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.titolo h2 {
-  font-size: 20px;
-  margin-top: 5px;
-  color: #4caf50;
+#navbar li {
+    margin: 12px 0;
 }
 
-.sezione h3 {
-  font-size: 16px;
-  margin: 10px 0;
-  color: #333;
+#navbar a {
+    text-decoration: none;
+    color: #2f6f3e;
+    font-weight: bold;
 }
 
-.citazione h3,
-.progettazione h3 {
-  font-size: 18px;
-  margin-top: 20px;
-  color: #2e7d32;
+#navbar a:hover {
+    text-decoration: underline;
+}
+#contenuto {
+    margin-left: 200px; /* spazio per la navbar */
+    padding: 20px;
 }
 
-.citazione p {
-  font-style: italic;
-  color: #555;
-  margin-top: 5px;
+#contenuto h2 {
+    background: #fff8e1; /* giallino chiaro */
+    border-left: 8px solid #f0c000;
+    padding: 8px;
+    margin-top: 25px;
+    font-size: 20px;
 }
 
-.progettazione p {
-  margin-top: 10px;
-  color: #444;
+#contenuto p {
+    margin: 10px 0 20px 0;
+    line-height: 1.4em;
+}
+footer {
+    clear: both;
+    background: #2f6f3e;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
 }
 
-.contatti {
-  margin-top: 30px;
-  text-align: center;
-  font-weight: bold;
-  color: #2e7d32;
+footer a {
+    color: white;
+    text-decoration: underline;
 }
