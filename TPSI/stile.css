@@ -1,19 +1,17 @@
-/* Reset di base */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
 
-    /* immagine della margherita come sfondo */
     background-image: url("margherita.jpg");
-    background-size: cover;      /* la adatta a coprire tutto */
-    background-position: center; /* la centra */
+    background-size: cover;     
+    background-position: center; 
     background-attachment: fixed;/* resta ferma anche se scrolli */
 }
 
 #titolo {
-    background-color: #2f6f3e; /* verde */
-    color: white;
+    background-color: #2f6f3e; 
+    color: white; 
     font-size: 32px;
     font-weight: bold;
     padding: 20px;
@@ -44,7 +42,7 @@ body {
 }
 
 #navbar li {
-    margin: 12px 0;
+    margin: 12px;
 }
 
 #navbar a {
@@ -64,7 +62,7 @@ body {
 }
 
 #contenuto h2 {
-    background: #fff8e1; /* giallino chiaro */
+    background: #fff8e1;
     border-left: 8px solid #f0c000;
     padding: 8px;
     margin-top: 25px;
