@@ -42,27 +42,34 @@ void sommaMultipli(int *_array1, int _n){
     printf("Gli elementi multipli di 3 sono %d e la loro somma è %d\n", cnt, somma);
 }
 
-int* creaVettDispari(int *_array1,int _sizedispari, int _n){
+int* creaVettDispari(int *_array1,int *_sizedispari, int _n){
     int *_sizeDispari=0;
     int *_dispari=NULL;
     int j = 0;
     for(int i = 0; i < _n; i++){
         if(_array1[i] % 2 != 0){
             (*_sizeDispari)++;
-            *_dispari[j++] = _array1[i];
+            int *tmp=realloc(_dispari, (*_sizedispari)*sizeof(int));
+            if(tmp==NULL){
+                printf("Errore di allocazione");
+                free(_dispari);
+                return NULL;
+            }
+            _dispari=tmp;
+            _dispari[(*_sizedispari)-1]=_array1[i];
         }
     }
-
     return _dispari;
-}
 
-void stampaArrayDispari(int* array, int size) {
-    printf("Valori dispari:\n");
-    for(int i = 0; i < size; i++) {
-        printf("%d ", array[i]);
+}
+stampaVettd(int *_dispari, int *_sizedispari){
+    for(int i = 0; i < *_sizedispari; i++){
+        printf("%d ", _dispari[i]);
     }
     printf("\n");
+    
 }
+
 
 int main(){
     int *array1 = NULL;
@@ -79,8 +86,8 @@ int main(){
     sommaMultipli(array1, n);
 
     dispari = creaVettDispari(array1, n, dispari);
-    stampaArrayDispari(dispari,&sizedispari);
-
+    printf("l'array contenente gli elementi dispari risulta: ");
+    stampaVettd(dispari, sizedispari);
     free(array1);
     free(dispari);
     return 0;
