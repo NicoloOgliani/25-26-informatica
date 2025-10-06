@@ -16,13 +16,18 @@ int *creaVett(int _n){
     }
     return _array1;
 }
-void inserisciValori(int *_array1, int _n){
+int* inserisciValori(int *_array1, int _n){
     for(int i=0; i<_n; i++){
         printf("Inserisci un valore: ");
         scanf("%d", &_array1[i]);
     }
+    return _array1;
 }
 void aumentaDimensione(int *_array1, int _n, int _n1){
+    /*si potrebbe fare con un nuovo vettore e fare
+    nuovovettore=realloc(vecchiovettore...)
+    con un do while della nuova dimensione e poi un return con il vettore nuovo*/
+    
     int scelta=0;
     printf("Vuoi aumentare la dimensione dell'array? se si inserisci 1 altrimenti 0");
     scanf("%d", &scelta);
@@ -64,7 +69,7 @@ int main(){
     printf("Inserisci la quantità degli elementi: ");
     scanf("%d", &n);
     array1=creaVett(n);
-    inserisciValori(array1, n);
+    array1=inserisciValori(array1, n);
     aumentaDimensione(array1, n, n1);
     free(array1);
     return 0;
