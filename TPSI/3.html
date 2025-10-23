@@ -1,0 +1,44 @@
+<!--1. creiamo una text area dove inseriamo un messaggio
+    2. creiamo una text area dove inseriamo il colore da attribuire al testo
+    3. creiamo una div (w. 400px, h. 300px bordo 1px solid black)
+    4. creiamo un pulsante che copi il messaggio scritto all'interno della div
+    5. creiamo un pulsante che premendolo colora il testo della div nel colore inserito
+    6. creiamo un pulsante che cilccandolo aumenta la width della div
+    7. creiamo un pulsante che cilccandolo diminuisce la width della div-->
+<!DOCTYPE.html>
+<html>
+    <head>
+        <title>Text area</title>
+        <style>
+            #output{
+                width: 400px;
+                height: 300px;
+                border: 2px solid black;
+            }
+        </style>
+        <script>
+            function scrivi(){
+                document.getElementById("output").innerHTML= messaggio.value;
+            }
+            function cambiaColore(){
+                var msg=document.getElementById("messaggio").value;
+                var colore=document.getElementByid("colore").value;
+                document.getElementById("output").innerHTML= msg.value;
+                document.getElementById("output").style.color=colore;
+            }
+        </script>
+    </head>
+    <body>
+        <form name="moduli">
+        <label>Inserisci un colore</label>
+        <input type="text" id="colore" name="colore" maxlenght="200"></input>
+        <br><br>
+        <label>Inserisci un messaggio</label>
+        <input type="text" id="messaggio" name="messaggio" maxlenght="200">
+        <br><br>
+        <input type="button" value="Ricopia il testo" onclick="scrivi();"></input><br><br>
+        <input type="button" value="Cambia colore testo" onclick="cambiaColore();"></input>
+        <div id="output"></div>
+        </form>
+    </body>
+</html>
