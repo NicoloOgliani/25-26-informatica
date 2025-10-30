@@ -45,6 +45,11 @@
                 larghezza=larghezza+50;
                 document.getElementById("output").style.width=larghezza+"px";
             }
+            function diminuisciDiv(){
+                larghezza=larghezza-50;
+                document.getElementById("output").style.width=larghezza+"px";
+
+            }
 
 
         </script>
@@ -65,6 +70,7 @@
             <input type ="button" value="diminuisci carattere" onclick="diminuisciCarattere();"></input>
             <br></br>
             <input type ="button" value="aumenta larghezza box" onclick="allargaDiv();"></input>
+            <input type ="button" value="diminuisci larghezza box" onclick="diminuisciDiv();"></input>
             
             <div id="output"></div>
 
