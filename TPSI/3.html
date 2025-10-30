@@ -5,40 +5,74 @@
     5. creiamo un pulsante che premendolo colora il testo della div nel colore inserito
     6. creiamo un pulsante che cilccandolo aumenta la width della div
     7. creiamo un pulsante che cilccandolo diminuisce la width della div-->
-<!DOCTYPE.html>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Text area</title>
         <style>
             #output{
-                width: 400px;
-                height: 300px;
-                border: 2px solid black;
+                width:300px;
+                height: 200px;
+                border: 2px solid red;
             }
+        
+
         </style>
         <script>
+
+            var dimCarattere=30;
+            var larghezza=300;
+        
             function scrivi(){
                 document.getElementById("output").innerHTML= messaggio.value;
             }
-            function cambiaColore(){
-                var msg=document.getElementById("messaggio").value;
-                var colore=document.getElementByid("colore").value;
-                document.getElementById("output").innerHTML= msg.value;
-                document.getElementById("output").style.color=colore;
+
+            function cambiacolore(){
+                //var msg=document.getElementById("messaggio").value;
+                var color=document.getElementById("colore").value;
+                //document.getElementById("output").innerHTML=msg;
+                document.getElementById("output").style.color=color;
             }
+            function allargaCarattere(){
+                dimCarattere++;
+                document.getElementById("output").style.fontSize=dimCarattere+"px";
+            }
+
+            function diminuisciCarattere(){
+                dimCarattere--;
+                document.getElementById("output").style.fontSize=dimCarattere+"px";
+            }
+            function allargaDiv(){
+                larghezza=larghezza+50;
+                document.getElementById("output").style.width=larghezza+"px";
+            }
+
+
         </script>
+
     </head>
     <body>
         <form name="moduli">
-        <label>Inserisci un colore</label>
-        <input type="text" id="colore" name="colore" maxlenght="200"></input>
-        <br><br>
-        <label>Inserisci un messaggio</label>
-        <input type="text" id="messaggio" name="messaggio" maxlenght="200">
-        <br><br>
-        <input type="button" value="Ricopia il testo" onclick="scrivi();"></input><br><br>
-        <input type="button" value="Cambia colore testo" onclick="cambiaColore();"></input>
-        <div id="output"></div>
+            <label>lascia un commento</label> 
+            <input type="text" id ="messaggio" name="messaggio" maxlength="200"></input>
+            <br></br>
+            <label>inserisci un colore</label> 
+            <input type="text" id ="colore" name="colore" maxlength="200"></input>
+            <br></br>
+            <input type ="button" value="ricopia il testo" onclick="scrivi();"></input>
+    
+            <input type ="button" value="cambia colore testo" onclick="cambiacolore();"></input>
+            <input type ="button" value="aumenta carattere" onclick="allargaCarattere();"></input>
+            <input type ="button" value="diminuisci carattere" onclick="diminuisciCarattere();"></input>
+            <br></br>
+            <input type ="button" value="aumenta larghezza box" onclick="allargaDiv();"></input>
+            
+            <div id="output"></div>
+
+            
+
         </form>
+
+
+
     </body>
 </html>
