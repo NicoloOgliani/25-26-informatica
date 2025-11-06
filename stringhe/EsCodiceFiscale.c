@@ -20,247 +20,127 @@ M → lettera che rappresenta il mese di nascita (A = gennaio, B = febbraio, C =
 DD → giorno di nascita (per le donne si aggiunge 40 al giorno);
 LLLL → codice del comune di nascita (per questo esercizio useremo G186, che è il codice del comune di Ostiglia);
 C → lettera di controllo calcolata con una formula basata sui precedenti 15 caratteri.
-
 */
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-// Funzioni
-void prendi_cognome(char *buf);
-void prendi_nome(char *buf);
-void prendi_data(char *buf);
-void prendi_genere(char *gen);
-void crea_ccc(char *cognome, char *ris);
-void crea_nnn(char *nome, char *ris);
-char mese_in_lettera(char d1, char d2);
-void giorno_codice(int g, char gen, char *ris);
-void monta_codice(char *c1, char *c2, char *yy, char m, char *dd, char *finale);
 
-int main() {
-    char cognome[40], nome[40], data[11], genere;
-    char parte1[4], parte2[4], anno[3], lettera_mese, giorno[3];
-    char codice[16];
-
-    printf("*** CODICE FISCALE (senza controllo) ***\n\n");
-
-    prendi_cognome(cognome);
-    prendi_nome(nome);
-    prendi_data(data);
-    prendi_genere(&genere);
-
-    // === CCC ===
-    crea_ccc(cognome, parte1);
-
-    // === NNN ===
-    crea_nnn(nome, parte2);
-
-    // === YY ===
-    anno[0] = data[8];
-    anno[1] = data[9];
-    anno[2] = '\0';
-
-    // === M ===
-    lettera_mese = mese_in_lettera(data[3], data[4]);
-
-    // === DD ===
-    int g = (data[0] - '0') * 10 + (data[1] - '0');
-    giorno_codice(g, genere, giorno);
-
-    // === CODICE FINALE ===
-    monta_codice(parte1, parte2, anno, lettera_mese, giorno, codice);
-
-    printf("\nRisultato: %s\n", codice);
-
-    return 0;
-}
-
-// Legge cognome con getchar, solo lettere
-void prendi_cognome(char *buf) {
-    int i = 0;
-    char c;
-    printf("Cognome: ");
-    while ((c = getचार()) != '\n') {
-        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-            if (i < 39) buf[i++] = c;
-        }
-    }
-    buf[i] = '\0';
-    if (i == 0) {
-        printf("Errore: cognome vuoto!\n");
-        prendi_cognome(buf);
-    }
-}
-
-// Legge nome
-void prendi_nome(char *buf) {
-    int i = 0;
-    char c;
-    printf("Nome: ");
-    while ((c = getchar()) != '\n') {
-        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-            if (i < 39) buf[i++] = c;
-        }
-    }
-    buf[i] = '\0';
-    if (i == 0) {
-        printf("Errore: nome vuoto!\n");
-        prendi_nome(buf);
-    }
-}
-
-// Legge data GG/MM/AAAA
-void prendi_data(char *buf) {
-    int i = 0, ok = 1;
-    char c;
-    do {
-        ok = 1;
-        i = 0;
-        printf("Data (GG/MM/AAAA): ");
-        while ((c = getchar()) != '\n' && i < 10) {
-            if ((c >= '0' && c <= '9') || c == '/') {
-                buf[i++] = c;
-            }
-        }
-        buf[i] = '\0';
-
-        if (i != 10 || buf[2] != '/' || buf[5] != '/') {
-            ok = 0;
-            printf("Scrivi GG/MM/AAAA\n");
-            continue;
-        }
-
-        // Controlla cifre
-        for (int j = 0; j < 10; j++) {
-            if (j == 2 || j == 5) continue;
-            if (buf[j] < '0' || buf[j] > '9') ok = 0;
-        }
-        if (!ok) printf("Solo numeri!\n");
-
-    } while (!ok);
-}
-
-// Legge M o F
-void prendi_genere(char *gen) {
-    char c;
-    do {
-        printf("Genere (M/F): ");
-        c = getchar();
-        while (getchar() != '\n');
-        if (c == 'M' || c == 'm') *gen = 'M';
-        else if (c == 'F' || c == 'f') *gen = 'F';
-        else printf("Scrivi M o F!\n");
-    } while (*gen != 'M' && *gen != 'F');
-}
-
-// Crea CCC (3 consonanti cognome)
+//ccc
 void crea_ccc(char *cognome, char *ris) {
-    char consonanti[15] = {0};
-    char vocali[15] = {0};
-    int nc = 0, nv = 0, i = 0;
+    char consonanti[15];
+    char vocali[15];
+    int cntConsonanti = 0, cntVocali = 0; 
+    int i = 0;
 
     while (cognome[i] != '\0') {
         char lettera = cognome[i];
         if (lettera == 'a' || lettera == 'e' || lettera == 'i' || lettera == 'o' || lettera == 'u' ||
             lettera == 'A' || lettera == 'E' || lettera == 'I' || lettera == 'O' || lettera == 'U') {
-            vocali[nv++] = lettera;
+            vocali[cntVocali++] = lettera;//metto nella stringa vocali le vocali trovate
+            //sia minuscole che maiuscole
         } else if ((lettera >= 'a' && lettera <= 'z') || (lettera >= 'A' && lettera <= 'Z')) {
-            consonanti[nc++] = lettera;
+            consonanti[cntConsonanti++] = lettera;
+            //metto le consonanti trovate nella stringa consonanti sia minusc che maiusc
         }
         i++;
     }
 
     i = 0;
-    while (i < 3 && nc > 0) {
-        ris[i++] = consonanti[--nc];
+    while (i < 3 && cntConsonanti > 0) {
+        ris[i++] = consonanti[cntConsonanti--];//metto nella nuova str le consonanti al contrario
     }
-    while (i < 3 && nv > 0) {
-        ris[i++] = vocali[--nv];
+    while (i < 3 && cntVocali > 0) {
+        ris[i++] = vocali[cntVocali--];//metto nella nuova str le vocali al contrario
     }
     while (i < 3) {
         ris[i++] = 'X';
     }
     ris[3] = '\0';
 
-    // Inverti (perché ho preso dall'ultima)
+    //inverto perchè avevo fatto al contrario
     char temp;
-    temp = ris[0]; ris[0] = ris[2]; ris[2] = temp;
-    if (ris[1] != 'X') {
-        temp = ris[1]; ris[1] = ris[1]; // no-op, ma per stile
-    }
+    temp = ris[0]; 
+    ris[0] = ris[2]; 
+    ris[2] = temp;
 }
 
-// Crea NNN (nome, regola speciale)
+//nnn
 void crea_nnn(char *nome, char *ris) {
-    char consonanti[15] = {0};
-    char vocali[15] = {0};
-    int nc = 0, nv = 0, i = 0;
+    char consonanti[15];
+    char vocali[15];
+    int cntConsonanti = 0, cntVocali = 0;
+    int i = 0;
 
     while (nome[i] != '\0') {
         char lettera = nome[i];
         if (lettera == 'a' || lettera == 'e' || lettera == 'i' || lettera == 'o' || lettera == 'u' ||
             lettera == 'A' || lettera == 'E' || lettera == 'I' || lettera == 'O' || lettera == 'U') {
-            vocali[nv++] = lettera;
+            vocali[cntVocali++] = lettera;
         } else if ((lettera >= 'a' && lettera <= 'z') || (lettera >= 'A' && lettera <= 'Z')) {
-            consonanti[nc++] = lettera;
+            consonanti[cntConsonanti++] = lettera;
         }
         i++;
     }
 
-    if (nc >= 4) {
-        ris[0] = consonanti[0];
+    if (cntConsonanti >= 4) {
+        ris[0] = consonanti[0];//se ci sono più di 4 consonanti
         ris[1] = consonanti[2];
         ris[2] = consonanti[3];
     } else {
         i = 0;
-        while (i < 3 && nc > 0) ris[i++] = consonanti[--nc];
-        while (i < 3 && nv > 0) ris[i++] = vocali[--nv];
+        while (i < 3 && cntVocali > 0) ris[i++] = consonanti[cntConsonanti--];
+        while (i < 3 && cntVocali > 0) ris[i++] = vocali[cntVocali--];
         while (i < 3) ris[i++] = 'X';
+        //riempio la stringa finale al conrtrario per non modificare i cnt
     }
     ris[3] = '\0';
 
-    // Inverti per ordine corretto
+    //cambia ordine
     char temp;
-    for (i = 0; i < 3/2; i++) {
+    for (i = 0; i < 3; i++) {
         temp = ris[i];
         ris[i] = ris[2-i];
         ris[2-i] = temp;
     }
 }
 
-// Mese → lettera
+//lettera mese
 char mese_in_lettera(char d1, char d2) {
-    int m = (d1 - '0') * 10 + (d2 - '0');
-    char tabella[12] = {'A','B','C','D','E','H','L','M','P','R','S','T'};
-    return tabella[m-1];
-}
-
-// Giorno con +40 per donne
-void giorno_codice(int g, char gen, char *ris) {
-    int valore = g;
-    if (gen == 'F') valore += 40;
-    ris[0] = '0' + (valore / 10);
-    ris[1] = '0' + (valore % 10);
-    ris[2] = '\0';
-}
-
-// Monta il codice
-void monta_codice(char *c1, char *c2, char *yy, char m, char *dd, char *finale) {
-    int pos = 0;
-    for (int i = 0; i < 3; i++) finale[pos++] = c1[i];
-    for (int i = 0; i < 3; i++) finale[pos++] = c2[i];
-    for (int i = 0; i < 2; i++) finale[pos++] = yy[i];
-    finale[pos++] = m;
-    for (int i = 0; i < 2; i++) finale[pos++] = dd[i];
-    finale[pos++] = 'G';
-    finale[pos++] = '1';
-    finale[pos++] = '8';
-    finale[pos++] = '6';
-    finale[pos] = '\0';
-}
-
     
-    
+}
 
+
+int main() {
+    char cognome[40], nome[40], data[11], genere;
+    char parte1[4], parte2[4], anno[3], lettera_mese, giorno[3];
+    char codice[16];
+
+    printf("CODICE FISCALE\n\n");
+    printf("Inserisci il cognome: \n");
+    fgets(cognome, 40, stdin);
+    printf("Inserisci il nome: \n");
+    fgets(nome, 40, stdin);
+    do{
+        printf("Inserisci la data: \n");
+        fgets(data, 11, stdin);
+    }while(strlen(data)!=10 || data[2]!='/' || data[5]!= '/');
+    do{
+        printf("Inserisci il genere M oppure F: ");
+        fgets(&genere, 3, stdin);
+    }while(genere != 'M' && genere != 'F');
+    //ccc
+    crea_ccc(cognome, parte1);
+    //nnn
+    crea_nnn(nome, parte2);
+    //yy
+    anno[0] = data[8];
+    anno[1] = data[9];
+    anno[2] = '\0';
+    //lettera mese
+    lettera_mese = mese_in_lettera(data[3], data[4]);
+
+    return 0;
+}
 
 
     
