@@ -23,5 +23,4 @@ int main(){
     capovolgi_stringa(str, str1);
     free(str1);
     return 0;
-    
 }
