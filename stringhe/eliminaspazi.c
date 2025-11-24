@@ -3,48 +3,23 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-typedef char* String;
-
-int elimina_spazi(char *c){
-    int j=0;
-    for(int i =0; c[i]!='\0'; i++){
-        if(c[i]!=' ' && c[i]!= '\t'){
-            c[j++]=c[i];
+typedef char* Stringa;
+int eliminaSpazi(Stringa s){
+    int i=0, j=0;
+    for(i=0; s[i]!='\0'; i++){
+        if(s[i]==' '){
+            for(j=i; s[j]!='\0'; j++){
+                s[j]=s[j+1];
+            }
+            s[j]='\0';
         }
-    }
-    c[j]='\0';
-    return j;
-}
-void compatta(String buffer, int len){
-    if(len>0 && buffer[len-1]=='\n'){
-        buffer[len-1]='\0';
-        len--;
     }
 }
 int main(){
-    char buffer[200];
-    String frase;
-    int len;
-
+    Stringa s=(Stringa)malloc(50*sizeof(char));
+    if(s==NULL) return 1;
     printf("Inserisci una stringa: ");
-    if(fgets(buffer, sizeof(buffer), stdin)==NULL){
-        printf("C'è stato un errore\n");
-        return 1;
-    }
-    len=strlen(buffer);
-    compatta(buffer, len);
-    int newlen=elimina_spazi(buffer);
-
-    frase=(String)malloc((newlen+1)*sizeof(char));
-    if(frase==NULL){
-        printf("Errore di allocazione");
-        return 1;
-    }
-
-    strcpy(frase, buffer);
-    printf("La frase definitiva è %s", frase);
-
-    free(frase);
-    return 0;
+    fgets(s, 50, stdin);
+    eliminaSpazi(s);
+    printf("%s", s);
 }
