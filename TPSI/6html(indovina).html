@@ -9,31 +9,32 @@ la pagina di rosso, se tra 10 e 20 coloro di giallo-->
     <head>
         <title>Indovina il numero</title>
         <script>
-        function indovina(){
-            const num1 = 45;
-            const input1 = document.getElementById("num2");
-            const num2 = parseFloat(input1.value) || 0;
-            const differenza = Math.abs(num1 - num2);
-        
-            if (differenza > 20) {
-                document.body.style.backgroundColor = "red";
-            } else if (differenza >= 10 && differenza <= 20) {
-                document.body.style.backgroundColor = "yellow";
-
-            }else if(differenza < 5){
-                document.body.style.backgroundColor = "green";
-            }else {
-                document.body.style.backgroundColor = "white";
+            var ind=12;
+            function resetta(){
+                document.getElementById("num").value="";
+                document.bgColor="white";
             }
-            
-        }
+            function check(){
+                if(Math.abs(parseFloat(document.getElementById("num").value-ind))>20){
+                    document.bgColor="red";
+                }
+                else if(Math.abs(parseFloat(document.getElementById("num").value-ind))>10){
+                    document.bgColor="yellow";
+                }
+                else{
+                    document.bgColor="green";
+                }
+
+            }  
+                    
         </script>
     </head>
     <body>
+        <label>Inserisci il numero: </label>
         <h2>Indovina il numero</h2>
-        <input id="num2" type="number" placeholder="Inserisci un numero">
-        <input type="button" value="indovina" onclick="indovina();">
-
+        <input id="num" type="text">&nbsp;&nbsp;
+        <input type="button" value="controlla numero inserito" onclick="check();">&nbsp;&nbsp;
+        <input type="button" value="reset" onclick="resetta();">
 
     </body>
 </html>
