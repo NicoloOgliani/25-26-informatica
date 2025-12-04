@@ -1,44 +1,48 @@
-<!--costruisci una mini calcolatrice con 3 pulsanti 
+<!--costruisci una mini calcolatrice
 con  numeri, un display come nella calcolatrice-->
 <!DOCTYPE html>
 <head>
     <title>Mini Calcolatrice</title>
     <style>
-        #display {
-            width: 160px;
-            height: 30px;
-            margin-bottom: 10px;
-            text-align: right;
-            font-size: 20px;
-            border: 1px solid #000;
-            padding: 5px;
-        }
-        .button {
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-            margin: 5px;
-        }
+        
     </style>
     <script>
-    function aggiornaDisplay(value) {
-            document.getElementById('display').value += value;
-    }
-    function cancellaDisplay() {
-            document.getElementById('display').value = '';
-    }
-
+        let str="", str1="", op="";
+        function tasto(v){
+            document.calc.display.value+=v;
+            str+=v;
+        }
     </script>
 
     
 </head>
 <body>
-    <input type="text" id="display" readonly />
-    <br/>
-    <button class="button" onclick="aggiornaDisplay('1')">1</button>
-    <button class="button" onclick="aggiornaDisplay('2')">2</button>
-    <button class="button" onclick="aggiornaDisplay('3')">3</button>
-    <br/>
-    <button class="button" onclick="cancellaDisplay()">C</button>
+    <table border=3>
+        <tr><td>
+            <form name="calc">
+            <br><br>CASIO
+            <input type="text" name="display" value="" size="26"><br><br>
+            <table border=2>
+                <tr>
+                    <input type="button" value="1" onclick="tasto(this.value);">
+                    <input type="button" value="2" onclick="tasto(this.value);">
+                    <input type="button" value="*" onclick=";">
+                </tr>
+                <tr>
+                    <input type="button" value="-" onclick=";">
+                </tr>
+                <tr>
+                    <input type="button" value="=" onclick=";">
+                </tr>
+                <tr>
+                    <input type="button" value="0" onclick="tasto(this.value);">
+                    <input type="button" value="." onclick="tasto(this.value);">
+                </tr>
+            </table>
+            </form>
+        </td></tr>
+    </table>
+    
+
 </body>
 </html>
