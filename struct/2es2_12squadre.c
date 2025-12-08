@@ -14,9 +14,9 @@ typedef struct{
 void stampa(Squadra *teams, int n){
     int i;
     for(i=0; i<n; i++){
-        printf("nome squadra: \n%s", teams[i].nome);
-        printf("colore squadra: \n%s", teams[i].colore);
-        printf("punteggio: \n%d", teams[i].punteggio);
+        printf("nome squadra: %s ", teams[i].nome);
+        printf("colore squadra: %s ", teams[i].colore);
+        printf("punteggio: %d ", teams[i].punteggio);
     }
 }
 
