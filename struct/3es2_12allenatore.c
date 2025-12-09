@@ -1,7 +1,7 @@
 /*creare una struttura squadra con nome
 colore, punteggio e le informazioni del proprio allenatore, 
 (nome, cognome, titoli), poi stampiamo sollo le squadre 
-che hanno un punteggio superiore a 30 e numero di titoli per allenatore superiore a 10. Caricare un max di 10 squadre, fai con le funzioni*/
+che hanno un punteggio superiore a 30 e numero di titoli per allenatore superiore a 10. Caricare un max di 10 squadre*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,7 +47,6 @@ void stampaSquadre(squadre team[], int n){
 int main(){
     squadre *team;
     int n;
-    //fai una malloc per n squadre
     team=(squadre *)malloc(10 * sizeof(squadre));
     do{
     printf("Quante squadre vuoi inserire (max 10)? ");
