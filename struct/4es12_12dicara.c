@@ -18,8 +18,7 @@ typedef struct Lista {
     int lunghezza;
 } Lista;
 
-// Funzione per rimuovere il newline da fgets
-void pulisci_newline(char *s) {
+void eliminaInvio(char *s) {
     int len = strlen(s);
     if(len > 0 && s[len-1] == '\n') {
         s[len-1] = '\0';
@@ -30,15 +29,15 @@ void set_auto(Auto* nuova_auto){
     printf(" === Inserimento nuova auto ===\n");
     printf("Inserisci targa: ");
     fgets(nuova_auto->targa, 9, stdin);
-    pulisci_newline(nuova_auto->targa);
+    eliminaInvio(nuova_auto->targa);
 
     printf("Inserisci marca: ");
     fgets(nuova_auto->marca, 20, stdin);
-    pulisci_newline(nuova_auto->marca);
+    eliminaInvio(nuova_auto->marca);
 
     printf("Inserisci modello: ");
     fgets(nuova_auto->modello, 20, stdin);
-    pulisci_newline(nuova_auto->modello);
+    eliminaInvio(nuova_auto->modello);
 
     printf("Inserisci prezzo giornaliero: ");
     scanf("%f", &nuova_auto->prezzo_giorno);
@@ -54,7 +53,7 @@ int esisteTarga(Lista* lista, char* targa) {
         }
         temp = temp->next;
     }
-    return 0; // non trovata
+    return 0; //non trovata
 }
 
 void inserisciAuto(Lista* lista) {
@@ -67,9 +66,8 @@ void inserisciAuto(Lista* lista) {
 
     set_auto(nuova);
 
-    // controllo duplicato
     if(esisteTarga(lista, nuova->targa)) {
-        printf("Errore: esiste già un'auto con la targa %s\n", nuova->targa);
+        printf("esiste già un'auto con la targa %s \n", nuova->targa);
         free(nuova);
         return;
     }
@@ -105,27 +103,27 @@ void stampaAuto(Lista* parco_auto){
 
 void eliminaAuto(Lista* lista, char* targa) {
     Auto* temp = lista->testa;
-    Auto* prev = NULL;
+    Auto* precedente = NULL;
 
     while(temp != NULL && strcmp(temp->targa, targa) != 0) {
-        prev = temp;
+        precedente = temp;
         temp = temp->next;
     }
 
     if(temp == NULL) {
-        printf("Nessuna auto trovata con la targa %s\n", targa);
-        return;
+        printf("non c'è nessuna auto con la targa %s\n", targa);
+        return 1;
     }
 
-    if(prev == NULL) { // eliminazione in testa
+    if(precedente == NULL) { //tolgo dalla testa
         lista->testa = temp->next;
     } else {
-        prev->next = temp->next;
+        precedente->next = temp->next;//salto il nodo da eliminare
     }
 
     free(temp);
     lista->lunghezza--;
-    printf("Auto con targa %s eliminata correttamente!\n", targa);
+    printf("auto eliminata\n", targa);
 }
 
 Lista* crea_lista(){
@@ -161,7 +159,7 @@ int main(){
             case 3:
                 printf("Inserisci la targa da eliminare: ");
                 fgets(targa, 9, stdin);
-                pulisci_newline(targa);
+                eliminaInvio(targa);
                 eliminaAuto(parco_auto, targa);
                 break;
             case 0:
