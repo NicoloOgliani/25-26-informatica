@@ -1,0 +1,66 @@
+<!--realizzare una singola pagina html(+css, +javascript) 
+con elementi di input, pulsanti e div di output:
+l'utente agisce sugli elementi attivi e ottiene un feedback nel div di output, fai con il voto, se il voto è maggiore di 6 promosso altriemnti bocciato-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simulazione verifica</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #be9797;
+            }
+            h1 {
+                color: #333;
+            }
+            label {
+                display: inline-block;
+                width: 150px;
+                margin-bottom: 10px;
+            }
+            input {
+                padding: 5px;
+                margin-bottom: 10px;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                border: none;
+            }
+        </style>
+        <script>
+            function verificaVoto(){
+                var nome = document.getElementById("nome").value;
+                var voto = parseFloat(document.getElementById("voto").value);
+                var outputDiv = document.getElementById("output");
+
+                if(isNaN(voto) || voto < 0 || voto > 10){
+                    outputDiv.innerHTML = "il voto inserito non è valido";
+                    return;
+                }
+
+                if(voto >= 6){
+                    outputDiv.innerHTML = "Complimenti " + nome + " sei promosso con un voto di " + voto +;
+                } else {
+                    outputDiv.innerHTML = "mi dispiace " + nome + " sei bocciato con un voto di " + voto +;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>Simulazione verifica</h1>
+        <p>Inserisci il tuo nome e il tuo voto</p>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome">
+        <br><br>
+        <label for="voto">voto:</label>
+        <input type="voto" id="voto" name="voto" placeholder="Inserisci il tuo voto">
+        <br><br>
+        <button onclick="verificaVoto()">Verifica</button>
+        <div id="output" style="margin-top:20px; font-weight:bold;"></div>
+    </body>
+</html>
