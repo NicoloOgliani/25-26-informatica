@@ -22,7 +22,7 @@ void set_canzone(Canzone *c);
 Lista* crea_lista();
 void stampa_lista(Lista *l);
 void inserisci_canzone_lista(Lista *l);
-void ricerca_canzone_artista(Lista *l, char* artista);
+void ricerca_canzone_artista(Lista l, char artista);
 void libera_memoria(Lista* l);
 void inserisci_canzone_playlist(Lista *lista_canzoni, Lista *playlist);
 void stampa_playlist(Lista* playlist);
@@ -153,7 +153,7 @@ void inserisci_canzone_lista(Lista *l) {
     printf("Canzone inserita con successo.\n");
 }
 
-void ricerca_canzone_artista(Lista *l, char* artista) {
+void ricerca_canzone_artista(Lista l, char artista) {
     int i;
     for (i = 0; artista[i] != '\0'; i++) {
         if (artista[i] == '\n') {
@@ -295,68 +295,3 @@ void cancella_canzone_playlist(Lista *playlist) {
 
     printf("Canzone con id %d non trovata nella playlist.\n", id);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
