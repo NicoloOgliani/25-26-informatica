@@ -205,3 +205,52 @@ void inserisciInizioC(listaC* lista, int valore){
     }
     lista->lunghezza++;
 }
+//STAMPA CIRCOLARE
+void stampaCircolare(listaC* lista){
+    if(lista->testa==NULL){
+        return;
+    }
+    nodoC* current=lista->testa;
+    printf("Lista: ");
+    for(int i=0; i<lista->lunghezza; i++){
+        printf("%d", current->dato);
+        current=current->next;
+    }
+    printf("Ritorno a %d", lista->testa->dato);
+}
+//CANCELLA IN CIRCOLARE
+void cancellaCircolare(listaC* lista, int valore){
+    if(lista->testa==NULL) return;
+    //ELEMENTO IN TESTA
+    if(lista->testa->dato==valore){
+        if(lista->lunghezza==1){
+            free(lista->testa);
+            lista->testa=NULL;
+        }
+        else{
+            nodoC* current=lista->testa;
+            while(current->next!=lista->testa){
+                current=current->next;
+            }
+            nodoC* temp=lista->testa;
+            lista->testa=lista->testa->next;
+            current->next=lista->testa;
+            free(temp);
+        }
+        lista->lunghezza--;
+        return;
+    }
+    //ricerca
+    nodoC* current=lista->testa;
+    for(int i=0; i<lista->lunghezza; i++){
+        if(current->next->dato==valore){
+            nodoC* temp=current->next;
+            current->next=current->next->next;
+            free(temp);
+            lista->lunghezza--;
+            return;
+        }
+        current=current->next;
+    }
+
+}
