@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+//LISTA SEMPLICEMENTE COLLEGATA
 typedef struct Nodo{
     int dato;
     struct Nodo* next;
@@ -8,6 +9,15 @@ typedef struct{
     Nodo* testa;
     int lunghezza;
 }Lista;
+//LISTA CIRCOLARE
+typedef struct nodoC{
+    int dato;
+    struct nodoC next;
+}nodoC;
+typedef struct{
+    nodoC* testa;
+    int lunghezza;
+}listaC;
 //CREAZIONE LISTA
 Lista* creaLista(){
     Lista* lista=(Lista*)malloc(sizeof(Lista));
@@ -149,3 +159,49 @@ void liberaMemoria(Lista* lista){
     free(lista);
 }
 //CIRCOLARI
+//CREAZIONE LISTA
+void creaListaC(){
+    listaC* lista=(listaC*)malloc(sizeof(listaC));
+    lista->testa=NULL;
+    lista->lunghezza=0;
+    return lista;
+}
+//INSERIMENTO
+//ALLA FINE
+void inserisciFineC(listaC* lista, int valore){
+    nodoC* nuovonodo=(nodoC*)malloc(sizeof(nodoC));
+    nuovonodo->dato=valore;
+    if(lista->testa==NULL){
+        lista->testa=nuovonodo;
+        nuovonodo->next=nuovonodo;
+    }
+    else{
+        nodoC* current=lista->testa;
+        while(current->next!=lista->testa){
+            current=current->next;
+        }
+        nuovonodo->next=lista->testa;
+        current->next=nuovonodo;
+    }
+    lista->lunghezza++;
+
+}
+//ALL'INIZIO
+void inserisciInizioC(listaC* lista, int valore){
+    nodoC* nuovonodo=(nodoC*)malloc(sizeof(nodoC));
+    nuovonodo->dato=valore;
+    if(lista->testa==NULL){
+        lista->testa=nuovonodo;
+        nuovonodo->next=nuovonodo;
+    }
+    else{
+        nodoC* current=lista->testa;
+        while(current->next!=lista->testa){
+            current=current->next;
+        }
+        nuovonodo->next=lista->testa;
+        current->next=nuovonodo;
+        lista->testa=nuovonodo;
+    }
+    lista->lunghezza++;
+}
