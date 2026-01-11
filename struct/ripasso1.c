@@ -74,3 +74,78 @@ int ricerca(Lista* lista, int valore){
     return-1;
 }
 //CANCELLAZIONE ELEMENTI
+//DAL PRINCIPIO
+void cancellaInizio(Lista* lista){
+    if(lista->testa==NULL){
+        return;
+    }
+    Nodo* temp=lista->testa;
+    lista->testa=lista->testa->next;
+    free(temp);
+    lista->lunghezza--;
+}
+//DALLA FINE
+void cancellaFine(Lista* lista){
+    if(lista->testa==NULL) return;
+    if(lista->testa->next==NULL){
+        free(lista->testa);
+        lista->testa=NULL;
+    }
+    else{
+        Nodo* current=lista->testa;
+        while(current->next->next!=NULL){
+            current=current->next;
+        }
+        free(current->next);
+        current->next=NULL;
+    }
+    lista->lunghezza--;
+
+}
+//PER VALORE
+void cancellaPerValore(Lista* lista, int valore){
+    if(lista->testa==NULL) return;
+    //se l'elemento è in testa
+    if(lista->testa->dato==valore){
+        Nodo* temp=lista->testa;
+        lista->testa=lista->testa->next;
+        free(temp);
+        lista->lunghezza--;
+        return;
+    }
+    //ricerca
+    Nodo* current=lista->testa;
+    while(current->next!=NULL){
+        if(current->next->dato==valore){
+            Nodo* temp=current->next;
+            current->next=current->next->next;
+            free(temp);
+            lista->lunghezza--;
+            return;
+        }
+        current=current->next;
+
+    }
+}
+//STAMPA
+void stampaLista(Lista* lista){
+    Nodo* current=lista->testa;
+    printf("Lista: ");
+    while(current!=NULL){
+        printf("%d", current->dato);
+        current=current->next;
+    }
+    printf("NULL");
+    printf("%d", lista->lunghezza);
+}
+//LIBERA MEMORIA
+void liberaMemoria(Lista* lista){
+    Nodo* current=lista->testa;
+    while(current!=NULL){
+        Nodo* temp=current;
+        current=current->next;
+        free(temp);
+    }
+    free(lista);
+}
+//CIRCOLARI
