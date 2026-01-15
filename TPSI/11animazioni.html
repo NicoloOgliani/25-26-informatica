@@ -1,0 +1,36 @@
+<!-- ANIMAZIONI -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.box {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: relative;
+				left: 0;
+				transition: left 1s ease;
+			}
+		
+		</style>
+		<script>
+let moved = false;
+
+function moveBox() {
+  const box = document.getElementById("box");
+
+  if (!moved) {
+    box.style.left = "200px";
+  } else {
+    box.style.left = "0px";
+  }
+
+  moved = !moved;
+}
+</script>
+	</head>
+	<body>
+		<div class="box" id="box"></div>
+		<button onclick="moveBox()">Muovi</button>
+	</body>
+</html>
