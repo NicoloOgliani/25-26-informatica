@@ -22,7 +22,7 @@ typedef struct Certificazione{
 int main(){
     Studente *studenti;
     Certificazione *certificazioni;
-    int n=3;
+    int n=3, num, c_max, i_max;
 
     certificazioni=(Certificazione*)malloc(n*sizeof(Certificazione));
     if(certificazioni==NULL){
@@ -44,6 +44,30 @@ int main(){
     certificazioni[0].matricola="223";
     strcpy(certificazioni[0].esame.corso, "Inglese");
     certificazioni[0].esame.livello="2";
-
-
+    //stampa studenti
+    for(int i=0; i<n; i++){
+        printf("Studente %d", i+1);
+        printf("Cognome %s:\n", studenti[i].cognome); 
+        printf("Nome %s:\n", studenti[i].nome); 
+        printf("Classe %s:\n", studenti[i].classe); 
+        printf("Matricola %d:\n", studenti[i].matricola);
+    }
+    printf("Corso %d:\n", certificazioni[i].esame.corso); 
+    for(int i=0; i<n; i++){
+        num=studenti[i].matricola;
+        for(int j=0; j<n; j++){
+            if(certificazioni[j].matricola == num){ 
+                studenti[i].n_certif++; 
+            }
+        }
+    }
+    c_max=studenti[0].n_certif;
+    i_max=0;
+    for(int i=0; i<n; i++){ 
+        if(studenti[i].n_certif > c_max){ 
+            c_max = studenti[i].n_certif; 
+            i_max = i; 
+        } 
+    }
+    printf("Lo studente con il maggior numero di certificazioni è %s %s", studenti[i_max].Cognome, studenti[i_max].Nome);
 }
