@@ -1,7 +1,9 @@
-/*creare una struttura squadra con nome
-colore, punteggio e le informazioni del proprio allenatore, 
-(nome, cognome, titoli), poi stampiamo sollo le squadre 
-che hanno un punteggio superiore a 30 e numero di titoli per allenatore superiore a 10. Caricare un max di 10 squadre*/
+/* creare una struct Squadra contenente le seguenti 
+informazioni: nome, colore, punteggio e le informazioni del proprio  
+alenatore(nome, cognome, titoli)
+caricato un massimo di 10 squadre stampare quelle 
+con punteggio superiore a 100 e numero di titoli per allenatore superiore a 10
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
