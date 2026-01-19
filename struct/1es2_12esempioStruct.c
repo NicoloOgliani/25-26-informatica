@@ -4,40 +4,65 @@ modalità puntatore alla struttura*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-typedef struct {
+typedef struct{
     char nome[20];
     char cognome[20];
     int eta;
 }Persona;
+void pulisciBuffer(){
+    int c;
+    while((c=getchar())!='\n' && c!=EOF);
+}
+void rimuoviNewline(char *s){
+    int i=0;
+    while(s[i]!='\0'){
+        if(s[i]=='\n'){
+            s[i]='\0';
+            break;
+        }
+        i++;
+    }
+}
 int main(){
     Persona p1;
     Persona *p2;
-    //inseriamo le informazioni in p1
-    printf("Inserisci il nome della persona: ");
-    scanf("%s", p1.nome);
-    while(getchar()!='\n');
-    printf("Inserisci il cognome della persona: ");
-    scanf("%s", p1.cognome);
-    while(getchar()!='\n');
-    printf("Inserisci l'eta' della persona: ");
+
+    printf("Inserisci il nome della persona 1: ");
+    fgets(p1.nome, 20, stdin);
+    rimuoviNewline(p1.nome);
+    
+    printf("Inserisci il cognome della persona 1: ");
+    fgets(p1.cognome, 20, stdin);
+    rimuoviNewline(p1.cognome);
+    
+    printf("Inserisci l'eta della persona 1: ");
     scanf("%d", &p1.eta);
-    while(getchar()!='\n');
-    
-    
-    printf("Dati della persona: %s, %s, %d", p1.nome, p1.cognome, p1.eta);
+    pulisciBuffer();//va messo dopo ogni scanf se dopo ce un fgets
 
-    //ora facciamo la stessa cosa con p2
-    p2=malloc(sizeof(Persona));
-    printf("\nInserisci il nome della persona: ");
-    scanf("%s", p2->nome);
-    while(getchar()!='\n');
-    printf("Inserisci il cognome della persona: ");
-    scanf("%s", p2->cognome);
-    while(getchar()!='\n');
-    printf("Inserisci l'eta della persona: ");
+    p2=(Persona*)malloc(sizeof(Persona));
+    printf("Inserisci il nome della persona 2: ");
+    fgets(p2->nome, 20, stdin);
+    rimuoviNewline((p2->nome));
+    
+    printf("Inserisci il cognome della persona 2: ");
+    fgets(p2->cognome, 20, stdin);
+    rimuoviNewline(p2->cognome);
+    
+    printf("Inserisci l'eta della persona 2: ");
     scanf("%d", &(p2->eta));
-    while(getchar()!='\n');
+    pulisciBuffer();
+    
+    printf("\n--- DATI INSERITI ---\n"); 
+    printf("\nPersona 1:\n"); 
+    printf("Nome: %s\n", p1.nome); 
+    printf("Cognome: %s\n", p1.cognome); 
+    printf("Eta: %d\n", p1.eta); 
+    printf("\nPersona 2:\n"); 
+    printf("Nome: %s\n", p2->nome); 
+    printf("Cognome: %s\n", p2->cognome); 
+    printf("Eta: %d\n", p2->eta);
 
-    printf("Dati della persona: %s, %s, %d", p2->nome, p2->cognome, p2->eta);
+    free(p2);
+    return 0;
 }
 
