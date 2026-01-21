@@ -4,18 +4,18 @@ Prevedere un ulteriore pulsante tale che a secondo che la somma risulta essere
 pari o dispari verrà colorato lo sfondo della div, in cui visualizzeremo il risultato, 
 in due colori diversi; in un alert invece verrà comunicato se il valore è pari o dispari.-->
 <!DOCTYPE html>
-<html lang="it">
+<html>
     <head>
-        <title>Compito per le vacanze</title>
+        <title>Compito vacanze</title>
         <script>
             function calcolaSomma(){
                 var num1=parseInt(document.getElementById("num1").value);
                 var num2=parseInt(document.getElementById("num2").value);
                 var somma=num1+num2;
-                document.getElementById("risultato").innerHTML="La somma è: " + somma;
+                document.getElementById("risultato").innerHTML="La somma è: "+somma;
                 return somma;
             }
-            function verificaPoD(){
+            function VerificaPoD(){
                 var somma=calcolaSomma();
                 if(somma%2==0){
                     document.getElementById("risultato").style.backgroundColor="lightblue";
@@ -27,22 +27,18 @@ in due colori diversi; in un alert invece verrà comunicato se il valore è pari
                 }
             }
         </script>
-
-
     </head>
     <body>
         <h1>Compito vacanze</h1>
-        <label for="num1" >Inserisci il primo numero: </label>
-        <input type="number" id="num1" >
+        <label for="num1">Inserisci il primo numero</label>
+        <input type="number" id="num1">
         <br><br>
-        <label for="num2">Inserisci il secondo numero: </label>
-        <input type="number" id="num2" >
+        <label for="num1">Inserisci il secondo numero</label>
+        <input type="number" id="num2">
         <br><br>
-        <button onclick="calcolaSomma()" >Calcola somma</button>
-        <button onclick="verificaPoD()">Verifica se è pari o dispari</button>
+        <button onclick="calcolaSomma()">Calcola la somma</button>
+        <button onclick="VerificaPoD()">Verifica se è pari o dispari</button>
         <br><br>
-        <div id="risultato" style="width:200px; height:50px; border:1px solid black; text-align:center; line-height:50px;">
-            Risultato
-        </div>
+        <div id="risultato" style="width:200px; height:50px; border:1px solid black; text-align:center; line-height:50px;">Risultato</div>
     </body>
 </html>
