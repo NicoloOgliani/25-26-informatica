@@ -1,31 +1,30 @@
-<!DOCTYPE.html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>TEXT AREA</title>
-        <style>
-            #output{
-                width: 300px;
-                height: 200px;
-                border: 2px solid red;
-            }
-        </style>
-        <script>
-            function scrivi(){
-                document.getElementById("output").innerHTML = description.value;
-                
-            }
-        </script>
-        <!--quello che scrivi nell'etichetta viene mostrato nella div "output"-->
-    </head>
-    <body>
-        <form name="moduli">
-            <label>Lascia un commento</label>
-            <input type="text" id="description" name="description" maxlenght="200"></input>
-            <!--etichetta lascia un commento max 200 caratteri-->
-            <br><br><br>
-            <input type="button" value="Clicca" onclick="scrivi();"><br><br>
-            <!--pulsante clicca-->
-            <div id="output"></div>
-        </form>
-    </body>
+	<head>
+		<title>TEXT AREA</title>
+		<style>
+			#output{
+				width: 300px;
+				height: 200px;
+				border: 2px solid red;
+			}
+		</style>
+		<script>
+			function scrivi() {
+				document.getElementById("output").innerHTML = description.value;
+			}
+		</script>
+	</head>
+	<body>
+		<form name="moduli">
+			<label>Lascia un commento: </label>
+			<input type="text" id="description"
+					name="description" maxlength="200"></input>
+			</br></br></br>
+			<input type="button" value="Clicca" onclick="scrivi();">
+			</input>
+			</br></br>
+			<div id="output"></div>
+		</form>
+	</body>
 </html>

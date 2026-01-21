@@ -1,0 +1,88 @@
+<!--costruisci una mini calcolatrice
+con  numeri, un display come nella calcolatrice-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<script language="javascript">
+		str=""; op=""; str1="";
+		
+			function tasto(v)
+			{	document.calc.display.value+=v;
+				str+=v;
+			}
+			
+			function operat(p)
+			{	
+				op = p;
+				document.calc.display.value=""; 
+				str1=eval(str);				  
+				str="";
+			}								   
+			
+			function operaz()
+			{	
+				switch (op)
+				{
+					case  "+" :
+						document.calc.display.value= eval(str) + str1;
+						break;
+					case  "*" :
+						document.calc.display.value= eval(str) * str1;
+						break;
+					case  "-" :
+						document.calc.display.value= eval(str1) - str;
+						break;
+					case  "/" :
+						document.calc.display.value= eval(str1) / str;
+						break;	
+				}
+			}
+			
+			function canc()
+			{
+				document.calc.display.value="";
+				str="";
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<table border=3>
+		<tr><td>
+		<form name="calc">
+			<br><b>CASIO</b><br>
+			<input type="text" name="display" value="" size="26" ><br><br>
+			<table border="2">
+				<tr>
+					<td><center><input type="button" value="1"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="2"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="3"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="*"  onClick="operat(this.value);"></center></td>
+				</tr>
+				<tr> 
+					<td><center><input type="button" value="4"   onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="5"   onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="6"   onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="-"   onClick="operat(this.value);"></center></td>
+				</tr>
+					<td><center><input type="button" value="7"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="8"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="9"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="="  onClick="operaz();"></center></td>
+				<tr>
+					<td><center><input type="button" value="0"  onClick="tasto(this.value);"></center></td>
+					<td><center><input type="button" value="+"  onClick="operat(this.value);"></center></td>
+					<td><center><input type="button" value="/"  onClick="operat(this.value);"></center></td>
+					<td><center><input type="button" value="."  onClick="tasto(this.value);"></center></td>
+				</tr>
+				<tr>
+					<td colspan=4><center><input type="button" value="C"  style="width: 200px;" onClick="canc();"></center></td>
+				</tr>	
+			</table>
+		</form>
+		</td></tr>
+	</table>
+	
+	</body>
+</html>

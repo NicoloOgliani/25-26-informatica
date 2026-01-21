@@ -7,78 +7,89 @@
     7. creiamo un pulsante che cilccandolo diminuisce la width della div-->
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            #output{
-                width:300px;
-                height: 200px;
-                border: 2px solid red;
-            }
-        
 
-        </style>
-        <script>
+<head>
+<meta charset="utf-8">
+<title>Esempio di modifica di una DIV</title>
 
-            var dimCarattere=30;
-            var larghezza=300;
-        
-            function scrivi(){
-                document.getElementById("output").innerHTML= messaggio.value;
-            }
+<style>
+	#output {
+		width: 400px;
+		height: 300px;
+		border: 1px solid black;
+		font-size: 15px;
+		transition: width 1s;
+	}
 
-            function cambiacolore(){
-                //var msg=document.getElementById("messaggio").value;
-                var color=document.getElementById("colore").value;
-                //document.getElementById("output").innerHTML=msg;
-                document.getElementById("output").style.color=color;
-            }
-            function allargaCarattere(){
-                dimCarattere++;
-                document.getElementById("output").style.fontSize=dimCarattere+"px";
-            }
+</style>
 
-            function diminuisciCarattere(){
-                dimCarattere--;
-                document.getElementById("output").style.fontSize=dimCarattere+"px";
-            }
-            function allargaDiv(){
-                larghezza=larghezza+50;
-                document.getElementById("output").style.width=larghezza+"px";
-            }
-            function diminuisciDiv(){
-                larghezza=larghezza-50;
-                document.getElementById("output").style.width=larghezza+"px";
+<script>
+	var larghezza=400;
+	var dimCarattere=15;
+	
+	function cambiaContenutoDiv() {
+		var msg=document.getElementById("messaggio").value;
+		var color=document.getElementById("colore").value;
+		document.getElementById("output").innerHTML=msg;
+		document.getElementById("output").style.color=color;
+	}
+	
+	function allargaCarattere() {
+		dimCarattere++;
+		document.getElementById("output").style.fontSize=dimCarattere+"px";
+	}
+	
+	function stringiCarattere() {
+		if (dimCarattere>8) {
+			dimCarattere--;
+			document.getElementById("output").style.fontSize=dimCarattere+"px";
+		}
+	}
+	
+	function allarga() {
+		larghezza+=50;
+		document.getElementById("output").style.width=larghezza+"px";
+	}
+	
+	function stringi() {
+		if (larghezza>50) {
+			larghezza-=50;
+			document.getElementById("output").style.width=larghezza+"px";
+		}
+	}
+	function resetta() {
+		document.spazio.messaggio.value="";
+		document.spazio.colore.value="";
+		document.getElementById("output").innerHTML="";
+	}
+	
+</script>
 
-            }
+</head>
 
+<body>
+	<form name="spazio">
+	Messaggio <input type="text" id="messaggio" name="messaggio" value=""><br>
+	Colore <input type="text" id="colore" name="colore" value=""><br>
+	<!-- Alla pressione del pulsante invia, il messaggio compare nella DIV,
+	con colore del testo come indicato dalla seconda casella di testo -->
+	<input type="button" value="Invia" onclick="cambiaContenutoDiv();"> 
+	
+	<!-- Allarga la DIV di 50 pixel andando a modificare l'attributo width CSS-->
+	<input type="button" value="Allarga" onclick="allarga();">
+	
+	<!-- Stringi la DIV di 50 pixel andando a modificare l'attributo width CSS-->
+	<input type="button" value="Stringi" onclick="stringi();">
+	
+	<!-- Allarga il carattere di 1px andando ad agire su CSS -->
+	<input type="button" value="Allarga carattere" onclick="allargaCarattere();">
+	
+	<!-- Stringi il carattere di 1px andando ad agire su CSS -->
+	<input type="button" value="Stringi carattere" onclick="stringiCarattere();">
+	<input type="button" value="Pulisci campi" onclick="resetta();">
+	
+	<div id="output"></div>
+	</form>
+</body>
 
-        </script>
-
-    </head>
-    <body>
-        <form name="moduli">
-            <label>lascia un commento</label> 
-            <input type="text" id ="messaggio" name="messaggio" maxlength="200"></input>
-            <br></br>
-            <label>inserisci un colore</label> 
-            <input type="text" id ="colore" name="colore" maxlength="200"></input>
-            <br></br>
-            <input type ="button" value="ricopia il testo" onclick="scrivi();"></input>
-    
-            <input type ="button" value="cambia colore testo" onclick="cambiacolore();"></input>
-            <input type ="button" value="aumenta carattere" onclick="allargaCarattere();"></input>
-            <input type ="button" value="diminuisci carattere" onclick="diminuisciCarattere();"></input>
-            <br></br>
-            <input type ="button" value="aumenta larghezza box" onclick="allargaDiv();"></input>
-            <input type ="button" value="diminuisci larghezza box" onclick="diminuisciDiv();"></input>
-            
-            <div id="output"></div>
-
-            
-
-        </form>
-
-
-
-    </body>
 </html>

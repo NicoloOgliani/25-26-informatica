@@ -6,35 +6,23 @@ se la differenza tra due numeri (UNO INSERITO E L'ALTRO FISSO A 45) è maggiore 
 la pagina di rosso, se tra 10 e 20 coloro di giallo-->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Indovina il numero</title>
-        <script>
-            var ind=12;
-            function resetta(){
-                document.getElementById("num").value="";
-                document.bgColor="white";
-            }
-            function check(){
-                if(Math.abs(parseFloat(document.getElementById("num").value-ind))>20){
-                    document.bgColor="red";
-                }
-                else if(Math.abs(parseFloat(document.getElementById("num").value-ind))>10){
-                    document.bgColor="yellow";
-                }
-                else{
-                    document.bgColor="green";
-                }
-
-            }  
-                    
-        </script>
-    </head>
-    <body>
-        <label>Inserisci il numero: </label>
-        <h2>Indovina il numero</h2>
-        <input id="num" type="text">&nbsp;&nbsp;
-        <input type="button" value="controlla numero inserito" onclick="check();">&nbsp;&nbsp;
-        <input type="button" value="reset" onclick="resetta();">
-
-    </body>
+	<head><title>INDOVINA NUMERO</title>
+		<script>
+			var ind = 12;
+			function resetta(){
+				document.getElementById("num").value = "";
+				document.bgColor="white";
+			}
+			function check(){
+				if(Math.abs(parseFloat(document.getElementById("num").value) - ind ) > 30 )
+					document.bgColor="red";
+			}
+		</script>
+	</head>
+	<body>
+		<label>Inserisci il numero:  </label>
+		<input type="text" id="num" value="">&nbsp;&nbsp;&nbsp;&nbsp;                 
+		<input type="button" value="controlla numero inserito" onclick="check();">&nbsp;&nbsp;
+		<input type="button" value="Reset" onclick="resetta();">
+	</body>
 </html>
