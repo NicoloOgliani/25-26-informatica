@@ -8,21 +8,24 @@ la pagina di rosso, se tra 10 e 20 coloro di giallo-->
 <html>
 	<head><title>INDOVINA NUMERO</title>
 		<script>
-			var ind = 12;
+			var ind=12;
 			function resetta(){
-				document.getElementById("num").value = "";
-				document.bgColor="white";
+				document.getElementById("num").value="";
+				document.body.style.backgroundColor="white";
 			}
 			function check(){
-				if(Math.abs(parseFloat(document.getElementById("num").value) - ind ) > 30 )
-					document.bgColor="red";
+				if(Math.abs(parseFloat(document.getElementById("num").value)-ind)>30){
+					document.body.style.backgroundColor="red";
+				}
 			}
 		</script>
 	</head>
 	<body>
-		<label>Inserisci il numero:  </label>
-		<input type="text" id="num" value="">&nbsp;&nbsp;&nbsp;&nbsp;                 
-		<input type="button" value="controlla numero inserito" onclick="check();">&nbsp;&nbsp;
-		<input type="button" value="Reset" onclick="resetta();">
+		<label>Inserisci un numero: </label>
+		<input type="text" id="num" value="">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="controlla numero inserito"  onclick="check();">&nbsp;&nbsp;
+		<input type="button" value="reset"  onclick="resetta();">&nbsp;&nbsp;
+
+
 	</body>
 </html>

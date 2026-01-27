@@ -5,7 +5,7 @@ fai si che quando il mouse passa sopra una di queste 3 figure l'intera pagina si
 <head>
     <title>Mouse over con forme</title>
     <style>
-        body {
+        body{
             margin: 0;
             padding: 0;
             background-color: white;
@@ -15,21 +15,18 @@ fai si che quando il mouse passa sopra una di queste 3 figure l'intera pagina si
             height: 100vh;
             gap: 50px;
         }
-
-        .figura {
+        .figura{
             width: 150px;
             height: 150px;
             cursor: pointer;
         }
-
-        .triangolo {
+         .triangolo {
             width: 0;
             height: 0;
             border-left: 75px solid transparent;
             border-right: 75px solid transparent;
             border-bottom: 150px solid red;
         }
-
         .cerchio {
             width: 150px;
             height: 150px;
@@ -37,25 +34,26 @@ fai si che quando il mouse passa sopra una di queste 3 figure l'intera pagina si
             border-radius: 50%;
         }
 
+
         .quadrato {
             width: 150px;
             height: 150px;
             background-color: green;
         }
+
     </style>
     <script>
-        function cambiaColore(colore) {
-            document.body.style.backgroundColor = colore;
+        function cambiaColore(colore){
+            document.body.style.backgroundColor=colore;
         }
-
-        function resetColore() {
-            document.body.style.backgroundColor = "white";
+        function resetColore(){
+            document.body.style.backgroundColor="white";
         }
     </script>
 </head>
 <body>
     <div class="figura triangolo" onmouseover="cambiaColore('red')" onmouseout="resetColore()"></div>
-    <div class="figura cerchio" onmouseover="cambiaColore('yellow')" onmouseout="resetColore()"></div>
-    <div class="figura quadrato" onmouseover="cambiaColore('green')" onmouseout="resetColore()"></div>
+    <div class="figura quadrato" onmouseover="cambiaColore('yellow')" onmouseout="resetColore()"></div>
+    <div class="cerchio" onmouseover="cambiaColore('green')" onmouseout="resetColore()"></div>
 </body>
 </html>
