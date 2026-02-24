@@ -71,6 +71,55 @@ void stampa(Libro* L, int n){
         printf("\n");
     }
 }
+void registraLibro(Libro* L, int n){
+    int isbn, i, trovato=0;
+    printf("Inserire l'isbn del libro: ");
+    scanf("%d", &isbn);
+    for(i=0; i<n; i++){
+        if(isbn==L[i].isbn){
+            if(L[i].copie_disponibili!=0){
+                trovato=1;
+                L[i].copie_disponibili=1;
+                printf("Inserisci data prestito (gg mm aaaa): ");
+                scanf("%d %d %d", &L[i].data_prestito.giorno, &L[i].data_prestito.mese, &L[i].data_prestito.anno);
+                printf("Inserisci data restituzione (gg mm aaaa): ");
+                scanf("%d %d %d", &L[i].data_restituzione.giorno, &L[i].data_restituzione.mese, &L[i].data_restituzione.anno);
+            }
+            else{
+                printf("Non ci sono copie disponibili per questo libro\n");
+            }
+        }
+    }
+    if(!trovato){
+        printf("Libro non trovato\n");
+    }
+    return;
+}
+void visualizzaLibriPrestito(Libro* L, int n){
+    int i=0;
+    for(i=0; i<n; i++){
+        if(L[i].copie_disponibili<L[i].copie_totali){
+            printf("Titolo: %s\n", L[i].titolo);
+            printf("Autore: %s\n", L[i].autore);
+            printf("ISBN: %d\n", L[i].isbn);
+            printf("Copie disponibili: %d\n", L[i].copie_disponibili);
+            printf("Copie totali: %d\n", L[i].copie_totali);
+            printf("Data prestito: %02d/%02d/%04d\n", L[i].data_prestito.giorno, L[i].data_prestito.mese, L[i].data_prestito.anno);
+            printf("\n");
+        }
+    }
+}
+void visualizzaPrestitoScaduto(Libro* L, int n){
+    int i=0, gg_trascorsi;
+    for(i=0; i<n; i++){
+        gg_trascorsi=30*(L[i].data_restituzione.mese - L[i].data_prestito.mese)+L[i].data_restituzione.giorno+(30-L[i].data_prestito.giorno);
+        if(gg_trascorsi>40){
+            printf("\nTitolo: %s", L[i].titolo);
+            printf("\nAutore: %s", L[i].autore);
+            printf("\nISBN: %d", L[i].isbn);
+        }
+    }
+}
 int main(){
     Libro *biblioteca =NULL;
     int n=0, scelta;
@@ -90,9 +139,10 @@ int main(){
         while((c=getchar())!='\n'){}
 
         switch(scelta){
-            case 0:
+            case 0:{
                 printf("Esci dal programma\n");
                 break;
+            }
             case 1:{
                 biblioteca=InserisciLibro(biblioteca, &n);
                 break;
@@ -101,6 +151,22 @@ int main(){
                 stampa(biblioteca, n);
                 break;
             }
+            case 3:{
+                registraLibro(biblioteca, n);
+                break;
+            }
+            case 5:{
+                visualizzaLibriPrestito(biblioteca, n);
+                break;
+            }
+            case 6:{
+                visualizzaPrestitoScaduto(biblioteca, n);
+                break;
+            }
+            default:
+                printf("\nScelta non valida!");
+            
+            
 
         }
     }while(scelta!=0);
