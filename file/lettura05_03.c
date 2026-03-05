@@ -1,16 +1,18 @@
-//lttura dati formattati
+//lettura 
 #include <stdio.h>
+
 int main(){
-    FILE *file=fopen("dati.txt", "r");
+    FILE *file=fopen("dati2.txt", "r");
     char nome[100];
     int eta=0;
     float media=0;
+
     if(file==NULL){
-        printf("Errore di aprtura file\n");
+        printf("errore apertura file\n");
         return 1;
     }
-    fscanf(file, "%s %d %.2f", nome, &eta, &media);
-    printf("nome: %s eta: %d media: %.2f", nome, eta, media);
+    fscanf(file, "%s %d %f", nome, &eta, &media);
+    printf("nome: %s eta': %d media: %.2f", nome, eta, media);
     fclose(file);
     return 0;
 }

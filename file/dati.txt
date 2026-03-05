@@ -1,2 +1,2 @@
-Ciao mondo!
-Il numero: 10
+ciao mondo!
+il numero: 10
