@@ -6,7 +6,7 @@ int main(){
 	char scelta;
 	
 	//apriamo il file in append
-	fp = fopen("righe.txt", "a");
+	fp = fopen("APPEND8_04righe.txt", "a");
 	if (fp == NULL){
 		printf("errore apertura file\n");
 		return 1;
