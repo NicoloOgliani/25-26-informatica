@@ -80,6 +80,71 @@ void eliminaLibro(){
         printf("Errore apertura file\n");
         return;
     }
+    printf("Inserisci il titolo del libro da eliminare: ");
+    scanf("%s", cerca);
+    getchar();
+    while(fread(&l, sizeof(Libro), 1, fp)==1){
+        if(strcmp(l.titolo, cerca)!=0){
+            printf("\nTrovato Titolo: %s- ISBN: %s", l.titolo, l.ISBN);
+        }
+        else{
+            fwrite(&l, sizeof(Libro), 1, fpTmp);
+        }
+    }
+    fclose(fp);
+    fclose(fpTmp);
+    fp=fopen("biblioteca.dat", "rb");
+    fpTmp=fopen("biblioteca.dat", "wb");
+
+    while(fread(&l, sizeof(Libro), 1, fp)){
+        fwrite(&l, sizeof(Libro), 1, fpTmp);
+    }
+    fclose(fp);
+    fclose(fpTmp);
+}
+void modificaISBN(){
+    FILE *fp=fopen("biblioteca.dat", "rb");
+    Libro l;
+    int isbn;
+    if(fp==NULL){
+        printf("Errore apertura file\n");
+        return;
+    }
+    printf("Inserisci l'ISBN del libro da modificare: ");
+    scanf("%d", &isbn);
+    while(fread(&l, sizeof(Libro), 1, fp)==1){
+        if(l.ISBN==isbn){
+            printf("Trovato titolo: %s, ISBN %s", l.titolo, l.ISBN);
+            printf("Inserisci nuovo ISBN: ");
+            scanf("%s", l.ISBN);
+            getchar();
+            fseek(fp, -sizeof(Libro), SEEK_CUR);
+            fwrite(&l, sizeof(Libro), 1, fp);
+            printf("ISBN modificato\n");
+            
+    }
+    fclose(fp);
+}
+void separaLista(){
+    FILE *fp=fopen("biblioteca.dat", "rb");
+    FILE *fpPre=fopen("pre2000.dat", "wb");
+    FILE *fpPost=fopen("post2000.dat", "wb");
+    Libro l;
+    if(fp=NULL || fpPre==NULL || fpPost==NULL){
+        printf("Errore apertura file\n");
+        return;
+    }
+    while(fread(&l, sizeof(Libro), 1, fp)==1){
+        if(l.anno<2000){
+            fwrite(&l, sizeof(Libro), 1, fpPre);
+        }
+        else{
+            fwrite(&l, sizeof(Libro), 1, fpPost);
+        }
+    }
+    fclose(fp);
+    fclose(fpPre);
+    fclose(fpPost);
 }
 int main(){
     int scelta, isbn;
