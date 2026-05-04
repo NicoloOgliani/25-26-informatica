@@ -8,7 +8,7 @@ typedef struct{
     int anno;
 }Libri;
 void aggiungiLibro(){
-    FILE *fp=fopne("libreria.dat", "ab");
+    FILE *fp=fopen("libreria.dat", "ab");
     Libri l;
     if(fp==NULL){
         printf("Errore nell'apertura del file.\n");
@@ -31,7 +31,7 @@ void aggiungiLibro(){
     printf("Libro aggiunto con successo.\n");
 }
 void visualizzaLibri(){
-    FILE *fp=fopne("libreria.dat", "rb");
+    FILE *fp=fopen("libreria.dat", "rb");
     Libri l;
     if(fp==NULL){
         printf("Errore apertura");
@@ -78,7 +78,7 @@ void modificaLibro(){
     printf("Inserisci l'isbn del libro: \n");
     scanf("%[^\n]", isbn);
     getchar();
-    while(fread(&l, sizeof(Libri), 1, fp==1 && !trovato)){
+    while(fread(&l, sizeof(Libri), 1, fp)==1 && !trovato){
         if(strcmp(isbn, l.ISBN)==0){
             printf("Inserisci il nuovo isbn:\n");
             scanf("%[^\n]", l.ISBN);
@@ -93,6 +93,67 @@ void modificaLibro(){
     if(!trovato)
         printf("Libro non trovato\n");
     fclose(fp);
+}
+void eliminaLibro(){
+    FILE *fp=fopen("libreria.dat", "rb");
+    FILE *fpTmp=fopen("temp.dat", "wb");
+    char isbn[20];
+    Libri l;
+    if (fp == NULL) {
+        printf("Libreria vuota!\n");
+        return;
+    }
+    if (fpTmp == NULL) {
+        printf("errore sul file temporaneo!\n");
+        return;
+    }
+    printf("Inserisci isbn: \n");
+    scanf("%[^\n]", isbn);
+    getchar();
+    while(fread(&l, sizeof(Libri), 1, fp)){
+        if(strcmp(isbn, l.ISBN)==0){
+            printf("Libro trovat\n");
+        }
+        else{
+            fwrite(&l, sizeof(Libri), 1, fpTmp);
+        }
+    }
+    fclose(fp);
+    fclose(fpTmp);
+    fp=fopen("temp.dat", "rb");
+    fpTmp=fopen("libreria.dat", "wb");
+    while(fread(&l, sizeof(Libri), 1, fp)){
+        fwrite(&l, sizeof(Libri), 1, fpTmp);
+    }
+    fclose(fp);
+    fclose(fpTmp);
+}
+void separaLibri(){
+    FILE *fp=fopen("libreria.dat", "rb");
+    FILE *fpPre=fopen("pre.dat", "ab");
+    FILE *fpPost=fopen("post.dat", "ab");
+    Libri l;
+    while(fread(&l, sizeof(Libri), 1, fp)){
+        if(l.anno<2000)
+            fwrite(&l, sizeof(Libri), 1, fpPre);
+        else
+            fwrite(&l, sizeof(Libri), 1, fpPost);
+    }
+    fclose(fp);
+    fclose(fpPre);
+    fclose(fpPost);
+    fpPre=fopen("pre.dat", "rb");
+    fpPost=fopen("post.dat", "rb");
+    printf("Libri pre 2000\n");
+    while(fread(&l, sizeof(Libri), 1, fpPre)){
+        printf("Autore: %s, titolo: %s, isbn:%s, anno: %d\n", l.autore, l.titolo, l.ISBN, l.anno);
+    }
+    printf("Libri post 2000\n");
+    while(fread(&l, sizeof(Libri), 1, fpPost)){
+        printf("Autore: %s, titolo: %s, isbn:%s, anno: %d\n", l.autore, l.titolo, l.ISBN, l.anno);
+    }
+    fclose(fpPre);
+    fclose(fpPost);
 }
 int main(){
     int scelta;
